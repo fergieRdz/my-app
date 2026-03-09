@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 type HeaderProps = {
   children?: string;
@@ -6,18 +6,15 @@ type HeaderProps = {
   color?: string;
 };
 
-export function Header({ children, subtitle, color = "#000" }: HeaderProps) {
+export function Header({
+  children = "Clima",
+  subtitle,
+  color = "#0f172a",
+}: HeaderProps) {
   return (
     <View style={styles.container}>
-      <Text style={[styles.header, { color }]}>
-        {children ?? "Clima"}
-      </Text>
-
-      {subtitle && (
-        <Text style={[styles.subtitle, { color }]}>
-          {subtitle}
-        </Text>
-      )}
+      <Text style={[styles.title, { color }]}>{children}</Text>
+      {subtitle ? <Text style={[styles.subtitle, { color }]}>{subtitle}</Text> : null}
     </View>
   );
 }
@@ -25,15 +22,17 @@ export function Header({ children, subtitle, color = "#000" }: HeaderProps) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 24,
   },
-  header: {
+  title: {
     fontSize: 32,
     fontWeight: "800",
+    textAlign: "center",
   },
   subtitle: {
     fontSize: 14,
-    opacity: 0.7,
     marginTop: 4,
+    opacity: 0.7,
+    textAlign: "center",
   },
 });
